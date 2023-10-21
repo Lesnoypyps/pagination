@@ -18,56 +18,10 @@ let itemsView = 10;
 
 
 const data = await loadPage();
-console.log(data)
 
 
-// let prod = [
-//     {
-//         id:1,
-//         category:'Аудиосистемы',
-//         name:'Звуковая система SoundMax ',
-//         UoM:1,
-//         count:2,
-//         price:200,
-//         description:'',
-//         imgUrl:'../img/chamelion.jpg',
-//     },
-//     {
-//         id:2,
-//         category:'Звук',
-//         name:'Сабуфер для автомобиля Pioneer',
-//         UoM:1,
-//         count:2,
-//         price:500,
-//         description:'',
-//         imgUrl:'../img/chamelion.jpg',
-//     },
-//     {
-//         id:3,
-//         category:1,
-//         name:'Звуковая система',
-//         UoM:1,
-//         count:2,
-//         price:200,
-//         description:'',
-//         imgUrl:'../img/chamelion.jpg',
-//     }
-// ]
 
-// const getStorage = (key) => {
-//     const storageItem = localStorage.getItem(key);
-//     if(!storageItem){
-//         return [];
-//     }
-//     else{
-//         return JSON.parse(storageItem);
-//     }
-// };
 
-// const setStorage = (key, object) => {
-//     localStorage.setItem(key, JSON.stringify(object));
-// };
-// setStorage('products', prod);
 function createRowProd({id, title, category, price, count, url}){
     const row =  document.createElement('tr');
     row.classList.add('table__row');
@@ -115,6 +69,7 @@ function createRowProd({id, title, category, price, count, url}){
     nameCell.textContent = title;
     if(id!=undefined){
         idCell.textContent = id;
+        idCell.dataset.id = id;
     }else{
         idCell.textContent = ' '; 
     }
@@ -144,17 +99,17 @@ function createRowProd({id, title, category, price, count, url}){
 
     row.append(idCell, nameCell, categCell, UoMCell, countCell, priceCell, totalPriceCell,iconGroup);
     return row
-    // tbody.append(row);
-    // table.append(tbody);
 };
 const renderContacts = (elem, data) => {
     const allRow = data.map(createRowProd);
-    elem.append(...allRow);
+    let i=0;
+    while(i<10){
+        elem.append(...allRow);
+        i++
+    }
     return allRow;
 };
-const removeStorage = (tel) => {
-    localStorage.removeItem(tel)
-}
+
 
 
 
@@ -210,24 +165,26 @@ btnClose.forEach(elem => {
 });
 form.addEventListener('submit', e=>{
     e.preventDefault();
-    // const target = e.target;
-    // // const name = document.querySelector('.nameAdd').value;
-    // // const category = document.querySelector('.categoryAdd').value;
-    // // const description = document.querySelector('.descriptionAdd').value;
-    // // const count = document.querySelector('.countAdd').value;
-    // // const discount = document.querySelector('.discountAdd').value;
-    // // const price = document.querySelector('.priceAdd').value;
-    // // let prod = getStorage('products');
-    // console.log(prod);
-    // const formData = new FormData(target);
-    // // let newProduct = Object.fromEntries(formData);
-    // newProduct.id = prod[prod.length-1].id + 1;
-    // fullPriceModal.textContent = '0$';
-    // // setStorage('newProduct', newProduct);
-    // // prod.push(newProduct);
-    // // tbody.append(createRowProd(newProduct))
-    // // setStorage('products', prod);
-    // form.reset();
+    const target = e.target;
+    const title = document.querySelector('.nameAdd').value;
+    const category = document.querySelector('.categoryAdd').value;
+    const description = document.querySelector('.descriptionAdd').value;
+    const units = document.querySelector('.countAdd').value;
+    const discount = document.querySelector('.discountAdd').value;
+    const price = document.querySelector('.priceAdd').value;
+    const formData = new FormData(target);
+    let newProduct = Object.fromEntries(formData);
+    fetch('https://lunar-childish-primula.glitch.me/api/goods',{
+        method:'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+        mode:'cors'
+    })
+    fullPriceModal.textContent = '0$';
+    form.reset();
+    
     closeModal();
 })
 const checkbox = document.querySelector('#discount');
@@ -238,11 +195,11 @@ if (checkbox.checked) {
     fullPriceModal.textContent = Number(CountModal.value)*Number(PriceModal.value)*(discount/100) + '$';
 }
 
-const allRow = renderContacts(tbody, data);
 const totalPriceList = document.querySelectorAll('.totalPriceCell');
+console.log(totalPriceList);
 let fullTotalPrice = 0; 
 totalPriceList.forEach(elem => {
-    console.log(elem);
+
     fullTotalPrice+= Number(elem.textContent.substring(1,));
 });
 
@@ -258,45 +215,44 @@ CountModal.addEventListener('input', ()=>{
 spanPrice.textContent = fullTotalPrice + '$';
 
 let editedContactData = {};
-
+let globStr = {};
 window.addEventListener('click', e => {
-    let globStr = {};
+    
 
     const target = e.target;
     // const products = getStorage('products');
     
     if (target.closest('.edit-icon')) {
         let str = target.closest('.table__row').childNodes[0];
+        console.log(str);
         globStr.str = str.textContent;
         const newNameEdit = target.closest('.table__row').childNodes[1];
-        console.log(target.closest('.table__row').childNodes[2]);
         const newCategoryEdit = target.closest('.table__row').childNodes[2];
         const newUoMEdit = target.closest('.table__row').childNodes[3];
         const newCountEdit = target.closest('.table__row').childNodes[4];
         const newPriceEdit = target.closest('.table__row').childNodes[5];
         editedContactData.nameEdit = newNameEdit;
         editedContactData.categoryEdit = newCategoryEdit;
-        console.log(editedContactData.categoryEdit.textContent);
         editedContactData.UoMEdit = newUoMEdit;
         editedContactData.CountEdit = newCountEdit;
         editedContactData.priceEdit = newPriceEdit;
-        console.log(editedContactData.priceEdit.textContent);
         document.querySelector('.nameEditInput').value = editedContactData.nameEdit.textContent;
         document.querySelector('.categoryEditInput').value = editedContactData.categoryEdit.textContent;
         document.querySelector('.UoMEditInput').value = editedContactData.UoMEdit.textContent;
         document.querySelector('.countEditInput').value = editedContactData.CountEdit.textContent;
-        document.querySelector('.priceEditInput').value = Number(editedContactData.priceEdit.textContent.substr(1,3));
-        for (const elem of products){
+        document.querySelector('.priceEditInput').value = editedContactData.priceEdit.textContent.substr(1,3);
+        for (const elem of data){
             if(elem.id ==  globStr.str){
-                const index = products.findIndex(i => i.id == str.textContent);
-                console.log(products[index].description);
-                document.querySelector('.descriptionEditInput').value = products[index].description;
+                const index = data.findIndex(i => i.id == str.textContent);
+                console.log(data[index].description);
+                document.querySelector('.descriptionEditInput').value = data[index].description;
             }
         }
         openModalEdit();
     }
 })
 formEdit.addEventListener('submit', e=>{
+    
     const list = document.querySelector('tbody');
     list.addEventListener('click', e=>{
         const target = e.target;
@@ -306,44 +262,58 @@ formEdit.addEventListener('submit', e=>{
         globStr.fullRow = fullRow;
     })
     const target = e.target;
+    const index = target.closest('.table__row').firstChild;
+    console.log(index);
     const nameEdit = document.querySelector('.nameEditInput');
     const categoryEdit = document.querySelector('.categoryEditInput');
     const UoMEdit = document.querySelector('.UoMEditInput');
     const countEdit = document.querySelector('.countEditInput');
     const priceEdit = document.querySelector('.priceEditInput');
-    let products = getStorage('products');
-    for (const elem of products){
-        if(elem.id ==  globStr.str){
-            const index = products.findIndex(i => i.id == globStr.str);
-            products[index].category = categoryEdit.value;
-            products[index].UoM = UoMEdit.value;
-            products[index].count = countEdit.value;
-            products[index].price = priceEdit.value;
-            products[index].name = nameEdit.value;
+    
+    for (const elem of data){
+        console.log(elem);
+        
+        if(elem.id == index.dataset.id){
+            
+            console.log(index);
+            fetch(`https://lunar-childish-primula.glitch.me/api/goods/${index}`,{
+                method:'PATCH',
+                headers:{
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+                body: JSON.stringify({
+                    title: nameEdit.value ,
+                    category: categoryEdit.value,
+                    units: UoMEdit.value,
+                    count: countEdit.value,
+                    price: priceEdit.value,
+                }),
+                mode:'cors'
+                
+            })
+            // data[index].category = categoryEdit.value;
+            // data[index].units = UoMEdit.value;
+            // data[index].count = countEdit.value;
+            // data[index].price = priceEdit.value;
+            // data[index].title = nameEdit.value;
             globStr.fullRow.remove();
-            addProductPage(products[index],list);
-            formEdit.reset()
-            closeModalEdit()
+            addProductPage(data[index],list);
+            // formEdit.reset()
+            // closeModalEdit()
         }
     }
-
+    console.log(globStr);
 })
 tbody.addEventListener('click', e => {
     const target = e.target;
     if(target.closest('.del-icon')){
-        let products = getStorage('products');
-        for(const elem of products){
+        for(const elem of data){
             if(elem.id == target.closest('.table__row').firstChild.textContent){
-                // phoneBook.delete[findIndex(i => i.phone == target.closest('.contact').lastChild.textContent)]
-                const index = products.findIndex(i => i.id == target.closest('.table__row').firstChild.textContent);
-                products.splice(index,1);
-                setStorage('products', products);
-                target.closest('.table__row').remove();
+                const index = data.findIndex(i => i.id == target.closest('.table__row').firstChild.textContent);
+                data.splice(index,1);
             }
         }
     }
-    console.log(target);
-    console.log(target.closest('.table__row'));
 });
 
 
@@ -373,7 +343,7 @@ rightButton.addEventListener('click', () => {
 });
 leftButton.addEventListener('click', () => {
     if (!itemsPage <= 1) {
-        removeItems('tbody .item');
+        removeItems('tbody .table__row');
         itemsPage -= 1;
         for (let i = 0; i < itemsView; i++) {
             if (data[itemsPage * itemsView]) {
@@ -396,3 +366,4 @@ for (let i = 0; i < itemsView; i++) {
         }
     }
 }
+

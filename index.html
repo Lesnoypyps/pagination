@@ -73,7 +73,7 @@
                     <div class="leftColumn">
                         <div class="nameInput labelWrap">
                             <label for="name">Наименование</label>
-                            <input type="text" class="modal__input nameAdd" name="name">
+                            <input type="text" class="modal__input nameAdd" name="title">
                         </div>
                         <div class="categoryInput labelWrap">
                             <label for="category">Категория</label>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="UoMinput labelWrap">
                             <label for="UoM">Единицы Измерения</label>
-                            <input type="text" class="modal__input UoMAdd" name="UoM" value="шт">
+                            <input type="text" class="modal__input UoMAdd" name="units" value="шт">
                         </div>
                         <div class="discountInput labelWrap">
                             <label for="discount">Дисконт</label>
@@ -129,40 +129,44 @@
                     <img src="icons/cross.svg" alt="" srcset="" class="closeCross">
                 </header>
                 <div class="modal__block">
-                    <div class="nameEdit labelWrap">
-                        <label for="name">новое Наименование</label>
-                        <input type="text" class="modal__input nameAdd nameEditInput" name="name">
-                    </div>
-                    <div class="descriptionEdit labelWrap">
-                        <label for="description">новое Описание</label>
-                        <input type="text" class="modal__input descriptionAdd descriptionEditInput" name="description">
-                    </div>
-                    <div class="categoryEdit labelWrap">
-                        <label for="category">новая Категория</label>
-                        <input type="text" class="modal__input categoryAdd categoryEditInput" name="category">
-                    </div>
-                    <div class="discountInput labelWrap">
-                        <label for="discount">Дисконт</label>
-                        <div class="inputDiscount">
-                            <input type="checkbox" name="discountEdit" id="discountEdit" class="checkboxDiscount">
-                            <label for="discountEdit"></label>
-                            <input type="text" class="modal__input discountAdd discountEdit" name="discountInputText" disabled>
+                    <div class="leftColumn">
+                        <div class="nameEdit labelWrap">
+                            <label for="name">новое Наименование</label>
+                            <input type="text" class="modal__input nameAdd nameEditInput" name="title">
+                        </div>
+                        <div class="categoryEdit labelWrap">
+                            <label for="category">новая Категория</label>
+                            <input type="text" class="modal__input categoryAdd categoryEditInput" name="category">
+                        </div>
+                        <div class="UoMEdit labelWrap">
+                            <label for="UoM">новые Единицы Измерения</label>
+                            <input type="text" class="modal__input UoMAdd UoMEditInput" name="units">
+                        </div>
+                        <div class="discountInput labelWrap">
+                            <label for="discount">Дисконт</label>
+                            <div class="inputDiscount">
+                                <input type="checkbox" name="discountEdit" id="discountEdit" class="checkboxDiscount">
+                                <label for="discountEdit"></label>
+                                <input type="text" class="modal__input discountAdd discountEdit" name="discountInputText" disabled>
+                            </div>
                         </div>
                     </div>
-                    <div class="UoMEdit labelWrap">
-                        <label for="UoM">новые Единицы Измерения</label>
-                        <input type="text" class="modal__input UoMAdd UoMEditInput" name="UoM">
-                    </div>
-                    <div class="countEdit labelWrap">
-                        <label for="count">новое Количество</label>
-                        <input type="number" class="modal__input countAdd countEditInput" name="count">
-                    </div>
-                    <div class="priceEdit labelWrap">
-                        <label for="price">новая цена</label>
-                        <input type="number" class="modal__input priceAdd priceEditInput" name="price">
-                    </div>
-                    <div class="add">
-                        <input type="button" class="addImage btn" value="Изменить изображение">
+                    <div class="rightColumn">
+                        <div class="descriptionEdit labelWrap">
+                            <label for="description">новое Описание</label>
+                            <input type="text" class="modal__input descriptionAdd descriptionEditInput" name="description">
+                        </div>
+                        <div class="countEdit labelWrap">
+                            <label for="count">новое Количество</label>
+                            <input type="number" class="modal__input countAdd countEditInput" name="count">
+                        </div>
+                        <div class="priceEdit labelWrap">
+                            <label for="price">новая цена</label>
+                            <input type="number" class="modal__input priceAdd priceEditInput" name="price">
+                        </div>
+                        <div class="add">
+                            <input type="button" class="addImage btn" value="Изменить изображение">
+                        </div>
                     </div>
                     
                 </div>
