@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67aab98f-d992-4067-82f6-e7a074d2b6b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/auth.html" afterDir="false" />
+    <list default="true" id="67aab98f-d992-4067-82f6-e7a074d2b6b5" name="Changes" comment="add auth.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +80,7 @@
       <workItem from="1694513266429" duration="4925000" />
       <workItem from="1694640266265" duration="677000" />
       <workItem from="1697866903945" duration="39000" />
-      <workItem from="1697866944273" duration="1415000" />
+      <workItem from="1697866944273" duration="2209000" />
     </task>
     <task id="LOCAL-00001" summary="reworked">
       <created>1694514168710</created>
@@ -91,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694514168710</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add auth.html">
+      <option name="closed" value="true" />
+      <created>1697868614675</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1697868614675</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +116,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="reworked" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworked" />
+    <MESSAGE value="add auth.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="add auth.html" />
   </component>
 </project>
