@@ -44,12 +44,8 @@ export const createRowProd = ({id, title, category, price, count, url}) =>{
     tdEdit.append(buttonEdit);
     tdNoImage.append(buttonNoImage);
     nameCell.textContent = title;
-    if(id!=undefined){
-        idCell.textContent = id;
-        idCell.dataset.id = id;
-    }else{
-        idCell.textContent = ' ';
-    }
+    idCell.textContent = id;
+    idCell.dataset.id = id;
     categCell.textContent = category;
     UoMCell.textContent = 'шт';
     countCell.textContent = count;

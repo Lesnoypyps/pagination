@@ -1,6 +1,6 @@
 import {loadStyle} from "./loadStyle.js";
 import {data, removeUser} from "./script.js";
-import {renderContacts} from "./render.js";
+import {renderItems} from "./render.js";
 
 
 export const formControl = (modal, modalEdit, btnAdd, btnClose, modalWrapperEdit, modalWrapper, form) =>{
@@ -68,16 +68,10 @@ export const formControl = (modal, modalEdit, btnAdd, btnClose, modalWrapperEdit
         closeModal();
     })
     window.addEventListener('click', e => {
-
-
         const target = e.target;
-        // const products = getStorage('products');
-
         if (target.closest('.edit-icon')) {
             let str = target.closest('.table__row').childNodes[0].textContent;
             console.log(Number(str));
-
-
             data.forEach(elem =>{
                 if(elem.id === str){
                     const index = data.findIndex(i => i.id === Number(str));
@@ -101,7 +95,7 @@ export const formControl = (modal, modalEdit, btnAdd, btnClose, modalWrapperEdit
                     const index = data.findIndex(i => i.id === target.closest('.table__row').firstChild.textContent);
                     removeUser(index)
                     data.splice(index,1);
-                    renderContacts(data)
+                    renderItems(data)
                 }
             }
         }

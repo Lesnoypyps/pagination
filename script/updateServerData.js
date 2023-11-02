@@ -1,5 +1,5 @@
 'use strict'
-export const updateUser = async(index,nameEdit,categoryEdit,UoMEdit,countEdit,priceEdit) =>{
+export const updateUsers = async(index,nameEdit,categoryEdit,UoMEdit,countEdit,priceEdit) =>{
     await fetch(`https://lunar-childish-primula.glitch.me/api/goods/${index}`,{
         method:'PATCH',
         headers:{

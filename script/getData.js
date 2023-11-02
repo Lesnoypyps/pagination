@@ -1,5 +1,5 @@
 'use strict'
-export const loadPage = async() =>{
+export const loadPages = async() =>{
     const goods = await fetch('https://lunar-childish-primula.glitch.me/api/goods');
     return goods.json();
 }

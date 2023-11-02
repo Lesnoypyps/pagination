@@ -3,7 +3,7 @@ import {removeItems} from "./script.js";
 import {data} from "./script.js"
 import {createRowProd} from "./addElement.js";
 
-export const renderContacts = (elem) => {
+export const renderItems = (elem) => {
     const allRow = data.map(createRowProd);
     let i=0;
     while(i<10){
